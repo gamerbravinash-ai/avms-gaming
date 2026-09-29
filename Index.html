@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050509">
+<title>AVMS Gaming</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:#050509;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* ANIMATED GAMING BACKGROUND */
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 45%, #321000 0%, #120b09 35%, #050509 75%);
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:-50%;
+  background:
+    repeating-linear-gradient(
+      115deg,
+      transparent 0px,
+      transparent 70px,
+      rgba(255,70,0,.08) 72px,
+      transparent 74px
+    );
+  animation:moveLines 8s linear infinite;
+}
+
+@keyframes moveLines{
+  from{transform:translate(0,0);}
+  to{transform:translate(180px,180px);}
+}
+
+/* GLOWING SUN */
+.sun{
+  position:absolute;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  background:radial-gradient(circle,#ffb300,#ff3d00 35%,transparent 70%);
+  opacity:.25;
+  filter:blur(10px);
+  animation:pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(.9);opacity:.18}
+  50%{transform:scale(1.15);opacity:.35}
+}
+
+/* PARTICLES */
+.particles span{
+  position:absolute;
+  width:4px;
+  height:4px;
+  background:#ff6a00;
+  border-radius:50%;
+  box-shadow:0 0 12px #ff4500;
+  animation:float 5s linear infinite;
+}
+
+.particles span:nth-child(1){left:8%;top:80%;animation-delay:0s}
+.particles span:nth-child(2){left:18%;top:60%;animation-delay:1s}
+.particles span:nth-child(3){left:30%;top:90%;animation-delay:2s}
+.particles span:nth-child(4){left:45%;top:70%;animation-delay:.5s}
+.particles span:nth-child(5){left:60%;top:85%;animation-delay:1.5s}
+.particles span:nth-child(6){left:75%;top:65%;animation-delay:2.5s}
+.particles span:nth-child(7){left:88%;top:85%;animation-delay:1s}
+.particles span:nth-child(8){left:95%;top:55%;animation-delay:3s}
+
+@keyframes float{
+  0%{transform:translateY(0);opacity:0}
+  20%{opacity:1}
+  100%{transform:translateY(-100vh);opacity:0}
+}
+
+/* NAVBAR */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:10;
+  background:rgba(5,5,9,.82);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #292929;
+}
+
+nav{
+  max-width:1100px;
+  height:65px;
+  margin:auto;
+  padding:0 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:21px;
+  font-weight:900;
+  color:#ff6a00;
+  text-shadow:0 0 15px #ff4500;
+}
+
+.menu{
+  display:flex;
+  gap:20px;
+  list-style:none;
+}
+
+.menu a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.menu a:hover{
+  color:#ff6a00;
+}
+
+/* HERO CONTENT */
+.hero-content{
+  position:relative;
+  z-index:2;
+  width:92%;
+  max-width:850px;
+  padding-top:60px;
+}
+
+.tag{
+  color:#ff6a00;
+  letter-spacing:4px;
+  font-weight:bold;
+  margin-bottom:15px;
+  animation:blink 2s infinite;
+}
+
+@keyframes blink{
+  50%{opacity:.55}
+}
+
+h1{
+  font-size:clamp(50px,14vw,105px);
+  line-height:.88;
+  font-weight:1000;
+  text-transform:uppercase;
+  color:white;
+  text-shadow:
+    4px 4px 0 #ff3d00,
+    0 0 25px rgba(255,69,0,.65);
+}
+
+.hero p{
+  max-width:620px;
+  margin:25px auto;
+  color:#c5c5c5;
+  line-height:1.6;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-block;
+  padding:14px 24px;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:.25s;
+}
+
+.primary{
+  color:white;
+  background:#ff4500;
+  box-shadow:0 0 25px rgba(255,69,0,.45);
+}
+
+.secondary{
+  color:white;
+  background:#15151b;
+  border:1px solid #444;
+}
+
+.btn:hover{
+  transform:translateY(-4px) scale(1.03);
+}
+
+/* SECTIONS */
+section{
+  max-width:1100px;
+  margin:auto;
+  padding:75px 18px;
+}
+
+.section-title{
+  text-align:center;
+  font-size:34px;
+  margin-bottom:35px;
+}
+
+.section-title span{
+  color:#ff5a00;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card{
+  padding:25px;
+  border-radius:15px;
+  background:linear-gradient(145deg,#17171d,#0b0b0f);
+  border:1px solid #29292f;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  border-color:#ff4500;
+  box-shadow:0 10px 35px rgba(255,69,0,.15);
+}
+
+.icon{
+  font-size:42px;
+  margin-bottom:15px;
+}
+
+.card h3{
+  margin-bottom:10px;
+}
+
+.card p{
+  color:#999;
+  line-height:1.6;
+}
+
+/* YOUTUBE */
+.youtube{
+  text-align:center;
+  padding:35px 20px;
+  border:1px solid #29292f;
+  border-radius:20px;
+  background:#101015;
+}
+
+.youtube h2{
+  margin-bottom:12px;
+}
+
+.youtube p{
+  color:#999;
+  margin-bottom:22px;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px 15px;
+  border-top:1px solid #222;
+  color:#777;
+}
+
+footer strong{
+  color:#ff5a00;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+  nav{
+    height:58px;
+  }
+
+  .logo{
+    font-size:17px;
+  }
+
+  .menu{
+    gap:10px;
+  }
+
+  .menu a{
+    font-size:11px;
+  }
+
+  .hero{
+    min-height:92vh;
+  }
+
+  h1{
+    font-size:58px;
+  }
+
+  .tag{
+    font-size:12px;
+  }
+
+  .hero p{
+    font-size:14px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  section{
+    padding:60px 15px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+  <div class="logo">⚡ AVMS GAMING</div>
+
+  <ul class="menu">
+    <li><a href="#home">HOME</a></li>
+    <li><a href="#games">GAMES</a></li>
+    <li><a href="#youtube">YOUTUBE</a></li>
+  </ul>
+</nav>
+</header>
+
+<!-- HERO -->
+<div class="hero" id="home">
+
+  <div class="sun"></div>
+
+  <div class="particles">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="hero-content">
+
+    <div class="tag">🔥 WELCOME TO THE BATTLE 🔥</div>
+
+    <h1>AVMS<br>GAMING</h1>
+
+    <p>
+      Gaming • Battles • Challenges • Entertainment
+      <br>
+      Enter the arena and show your skills.
+    </p>
+
+    <div class="buttons">
+      <a class="btn primary" href="#games">ENTER ARENA</a>
+
+      <a class="btn secondary"
+         href="https://youtube.com/@mrpallugamer?si=DjLSHcvv4RNf92PL"
+         target="_blank">
+        ▶ YOUTUBE
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- GAMES -->
+<section id="games">
+
+  <h2 class="section-title">
+    AVMS <span>GAMES</span>
+  </h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="icon">🔥</div>
+      <h3>Battle Royale</h3>
+      <p>
+        Intense battles, survival and ultimate victory.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🎯</div>
+      <h3>Headshot Zone</h3>
+      <p>
+        Improve your aim and dominate the battlefield.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🏆</div>
+      <h3>Championship</h3>
+      <p>
+        Compete, challenge yourself and become a champion.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- YOUTUBE -->
+<section id="youtube">
+
+  <div class="youtube">
+
+    <h2>🎬 AVMS GAMING YOUTUBE</h2>
+
+    <p>
+      Watch gaming videos, highlights and new challenges.
+    </p>
+
+    <a
+      class="btn primary"
+      href="https://youtube.com/@mrpallugamer?si=DjLSHcvv4RNf92PL"
+      target="_blank">
+      ▶ VISIT YOUTUBE CHANNEL
+    </a>
+
+  </div>
+
+</section>
+
+<footer>
+  © 2026 <strong>AVMS Gaming</strong> — Game On.
+</footer>
+
+</body>
+</html>
